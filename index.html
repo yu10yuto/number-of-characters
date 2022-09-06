@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字数カウント｜リアルタイムで反映する下書きに使えるサイト</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: #A8BABE;
+        }
+        .container{
+            padding: 40px 0px;
+            margin: 30px auto;
+            width: 960px;
+            background-color: rgb(240, 240, 240);
+            border-top-right-radius: 30px;
+            border-top-left-radius: 30px;
+            border: 1px solid rgb(165, 165, 165);
+            box-shadow: 2px 2px 5px gray;
+        }
+        #title {
+            position: relative;
+            padding: 0.5em;
+            background-color: #9DC4D4;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            text-align: center;
+            color: black;
+            opacity: 0.7;
+            font-family: monospace;
+        }
+        #title::before {
+            position: absolute;
+            content: '';
+            top: 100%;
+            left: 0;
+            border: none;
+            border-bottom: solid 15px transparent;
+            border-right: solid 20px rgb(149, 158, 155);
+        }
+        .form{
+            display: flex;
+            justify-content: space-around;
+            margin-top: 100px;
+        }
+        #text{
+            font-size: 20px;
+            border-radius: 10px;
+            padding: 5px;
+        }
+        #text:focus{
+            border: 3px solid rgba(85, 85, 85, 0.47);
+            outline: none;
+            box-shadow: 2px 2px 2px gray inset, 2px 2px 2px gray;
+            outline: 1px solid gray;
+        }
+        p{
+            padding: 0 50px;
+            font-size: 30px;
+            opacity: 0.5;
+            color: white;
+            border-radius: 10px ;
+            background-color: rgba(48, 48, 48, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="title"><i class="fa-sharp fa-solid fa-badge-check"></i>文字数カウント｜リアルタイムで反映する下書きに使えるサイト</h1>
+        <div class="form">
+            <textarea name="" id="text" cols="40" rows="20" placeholder="ここに文字を記述してください"></textarea>
+            <p>0文字</p>
+        </div>
+    </div>
+    <script>
+        $(function(){
+            const button = new Audio("決定ボタンを押す7.mp3");
+            $("textarea").on("input", function(){
+                $("p").text(`${$("textarea").val().length}文字`);
+            })
+            $("textarea").change(function(){
+                $("p").text(`${$("textarea").val().length}文字`);
+            })
+        })
+    </script>
+</body>
+</html>
